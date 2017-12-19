@@ -11,6 +11,7 @@ class App extends Component {
   state = {
     friends,
     userGuess: [],
+    gameStart: true,
     score: 0,
     highScore: 0
   };
@@ -23,13 +24,15 @@ class App extends Component {
       this.setState({
         correct: true,
         score: this.state.score + 1,
-        userGuess: this.state.userGuess
+        userGuess: this.state.userGuess,
+        gameStart: false
       });
     } else {
       // The image has been clicked... you lose
       this.setState({
         correct: false,
         score: 0,
+        gameStart: false,
         userGuess: [],
         highScore: (this.state.score > this.state.highScore)
           ? this.state.score
@@ -70,11 +73,12 @@ class App extends Component {
     return (
       <div>
         <Navbar score={this.state.score} highScore={this.state.highScore} />
-        <Jumbotron  correct={this.state.correct} score={this.state.score}/>
+        <Jumbotron  correct={this.state.correct} score={this.state.score} gameStart={this.state.gameStart}/>
         <Wrapper>
           <div className="row">
             {this.state.friends.map(friend => (
               <FriendCard
+                score={this.state.score}
                 id={friend.id}
                 name={friend.name}
                 image={friend.image}
