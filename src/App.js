@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
-import Navbar from "./components/Navbar";
 import Jumbotron from "./components/Jumbotron";
 import friends from "./friends.json";
 import "./App.css";
@@ -72,8 +71,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar score={this.state.score} highScore={this.state.highScore} />
-        <Jumbotron  correct={this.state.correct} score={this.state.score} gameStart={this.state.gameStart}/>
+        <Jumbotron correct={this.state.correct} score={this.state.score} gameStart={this.state.gameStart} highScore={this.state.highScore}/>
         <Wrapper>
           <div className="row">
             {this.state.friends.map(friend => (
