@@ -1,40 +1,89 @@
 import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
-import Title from "./components/Title";
+import Navbar from "./components/Navbar";
+import Jumbotron from "./components/Jumbotron";
 import friends from "./friends.json";
 import "./App.css";
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
   state = {
-    friends
+    friends,
+    userGuess: [],
+    score: 0,
+    highScore: 0
   };
 
-  removeFriend = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const friends = this.state.friends.filter(friend => friend.id !== id);
+  handleScore = (id) => {
+    // Check to see if this image has already been clicked.
+    if (this.state.userGuess.indexOf(id) === -1) {
+      // The image has never been clicked.
+      this.state.userGuess.push(id);
+      this.setState({
+        correct: true,
+        score: this.state.score + 1,
+        userGuess: this.state.userGuess
+      });
+    } else {
+      // The image has been clicked... you lose
+      this.setState({
+        correct: false,
+        score: 0,
+        userGuess: [],
+        highScore: (this.state.score > this.state.highScore)
+          ? this.state.score
+          : this.state.highScore
+      })
+    }
+
+  };
+
+
+  handleImageClick = (event) => {
+    this.shuffuleFriends(this.state.friends);
+    this.handleScore(event.target.id)
+
+  };
+
+  shuffuleFriends = array => {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
     // Set this.state.friends equal to the new friends array
-    this.setState({ friends });
+    this.setState({
+      friends: array
+    });
   };
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return (
-      <Wrapper>
-        <Title>Friends List</Title>
-        {this.state.friends.map(friend => (
-          <FriendCard
-            removeFriend={this.removeFriend}
-            id={friend.id}
-            key={friend.id}
-            name={friend.name}
-            image={friend.image}
-            occupation={friend.occupation}
-            location={friend.location}
-          />
-        ))}
-      </Wrapper>
+      <div>
+        <Navbar score={this.state.score} highScore={this.state.highScore} />
+        <Jumbotron  correct={this.state.correct} score={this.state.score}/>
+        <Wrapper>
+          <div className="row">
+            {this.state.friends.map(friend => (
+              <FriendCard
+                id={friend.id}
+                name={friend.name}
+                image={friend.image}
+                handleImageClick={this.handleImageClick}
+                />
+            ))}
+          </div>
+        </Wrapper>
+      </div>
     );
   }
 }

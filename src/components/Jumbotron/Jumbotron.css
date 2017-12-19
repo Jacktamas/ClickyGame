@@ -1,0 +1,9 @@
+.jumbotron {
+  background-image: linear-gradient(180deg,rgba(0,0,0,0.7),rgba(0,0,0,1)), url("https://hdwallsource.com/img/2016/11/spongebob-squarepants-hd-wallpaper-58842-60619-hd-wallpapers.jpg");
+  background-position: top;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000;
+}

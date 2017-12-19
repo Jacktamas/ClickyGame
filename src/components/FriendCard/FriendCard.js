@@ -2,26 +2,10 @@ import React from "react";
 import "./FriendCard.css";
 
 const FriendCard = props => (
-  <div className="card">
-    <div className="img-container">
-      <img alt={props.name} src={props.image} />
+  <div className="col-xs-3 col-sm-3 col-md-3">
+    <div className="card">
+      <img className="img img-thumbnail d-block mx-auto" onClick={props.handleImageClick} id={props.id} alt={props.name} src={props.image} />
     </div>
-    <div className="content">
-      <ul>
-        <li>
-          <strong>Name:</strong> {props.name}
-        </li>
-        <li>
-          <strong>Occupation:</strong> {props.occupation}
-        </li>
-        <li>
-          <strong>Location:</strong> {props.location}
-        </li>
-      </ul>
-    </div>
-    <span onClick={() => props.removeFriend(props.id)} className="remove">
-      𝘅
-    </span>
   </div>
 );
 

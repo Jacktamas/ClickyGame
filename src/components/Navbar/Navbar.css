@@ -1,0 +1,21 @@
+.vdivide {
+  margin: 10px;
+  color: #000000;
+  margin-left: 30px;
+}
+nav.navbar {
+  text-align: center !important;
+  background:linear-gradient(180deg,#44a1e2);
+  border-bottom: 1px solid #000000;
+}
+a.brand, a.navbar-brand {
+  color: #ffffff !important;
+  font-family:fantasy;
+  font-size: 25px;
+  text-shadow: 1px 1px 1px #000000;
+}
+.theme {
+  color: #ffffff !important;
+  font-family:fantasy;
+  text-shadow: 1px 1px 1px #000000;
+}
