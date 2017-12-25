@@ -1,4 +1,4 @@
-# clickygame
+# ClickyGame
 
 This application keeps track of the user's score. The user's score should be incremented when clicking an image for the first time.
 The user's score should be reset to 0 if user clicked the same image more than once.
