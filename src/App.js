@@ -6,7 +6,7 @@ import friends from "./friends.json";
 import "./App.css";
 
 class App extends Component {
-  // Setting this.state.friends to the friends json array
+  // Setting this.state.friends to the friends json array and other needed statets
   state = {
     friends,
     userGuess: [],
@@ -67,7 +67,7 @@ class App extends Component {
     });
   };
 
-  // Map over this.state.friends and render a FriendCard component for each friend object
+  //Display the score and high score and map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return (
       <div>
